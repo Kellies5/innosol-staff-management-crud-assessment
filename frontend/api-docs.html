@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - Staff Management System</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .api-docs {
+            color: #333;
+        }
+
+        .api-endpoint {
+            background: white;
+            border-left: 4px solid #667eea;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: 1rem;
+        }
+
+        .method.get {
+            background-color: #48bb78;
+        }
+
+        .method.post {
+            background-color: #667eea;
+        }
+
+        .method.put {
+            background-color: #ed8936;
+        }
+
+        .method.delete {
+            background-color: #f56565;
+        }
+
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            background-color: #f7fafc;
+            padding: 0.5rem 0.8rem;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .request-example,
+        .response-example {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .code-label {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f7fafc;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Staff Management System</h1>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Staff</a>
+                    <a href="api-docs.html" class="nav-link active">API Docs</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content api-docs">
+            <h2>API Documentation</h2>
+            <p>Base URL: <code class="endpoint-path">http://localhost:5000/api</code></p>
+
+            <!-- Get All Staff -->
+            <div class="api-endpoint">
+                <h3>
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/staff</span>
+                </h3>
+                <p>Retrieve all staff members from the system.</p>
+
+                <div class="code-label">Response (200 OK):</div>
+                <div class="response-example">
+{
+  "success": true,
+  "message": "Staff members retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "position": "Software Engineer",
+      "department": "IT",
+      "salary": 75000,
+      "joinDate": "2023-01-15"
+    }
+  ]
+}
+                </div>
+            </div>
+
+            <!-- Get Staff by ID -->
+            <div class="api-endpoint">
+                <h3>
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/staff/:id</span>
+                </h3>
+                <p>Retrieve a specific staff member by ID.</p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>integer</td>
+                                <td>Staff member ID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="code-label">Response (200 OK):</div>
+                <div class="response-example">
+{
+  "success": true,
+  "message": "Staff member retrieved successfully",
+  "data": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "position": "Software Engineer",
+    "department": "IT",
+    "salary": 75000,
+    "joinDate": "2023-01-15"
+  }
+}
+                </div>
+            </div>
+
+            <!-- Create Staff -->
+            <div class="api-endpoint">
+                <h3>
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/staff</span>
+                </h3>
+                <p>Create a new staff member.</p>
+
+                <div class="code-label">Request Body:</div>
+                <div class="request-example">
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com",
+  "position": "Product Manager",
+  "department": "IT",
+  "salary": 85000,
+  "joinDate": "2024-01-10"
+}
+                </div>
+
+                <div class="code-label">Response (201 Created):</div>
+                <div class="response-example">
+{
+  "success": true,
+  "message": "Staff member created successfully",
+  "data": {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@example.com",
+    "position": "Product Manager",
+    "department": "IT",
+    "salary": 85000,
+    "joinDate": "2024-01-10"
+  }
+}
+                </div>
+            </div>
+
+            <!-- Update Staff -->
+            <div class="api-endpoint">
+                <h3>
+                    <span class="method put">PUT</span>
+                    <span class="endpoint-path">/staff/:id</span>
+                </h3>
+                <p>Update an existing staff member.</p>
+
+                <div class="code-label">Request Body:</div>
+                <div class="request-example">
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com",
+  "position": "Senior Product Manager",
+  "department": "IT",
+  "salary": 95000
+}
+                </div>
+
+                <div class="code-label">Response (200 OK):</div>
+                <div class="response-example">
+{
+  "success": true,
+  "message": "Staff member updated successfully",
+  "data": {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@example.com",
+    "position": "Senior Product Manager",
+    "department": "IT",
+    "salary": 95000
+  }
+}
+                </div>
+            </div>
+
+            <!-- Delete Staff -->
+            <div class="api-endpoint">
+                <h3>
+                    <span class="method delete">DELETE</span>
+                    <span class="endpoint-path">/staff/:id</span>
+                </h3>
+                <p>Delete a staff member.</p>
+
+                <div class="code-label">Response (200 OK):</div>
+                <div class="response-example">
+{
+  "success": true,
+  "message": "Staff member deleted successfully",
+  "data": null
+}
+                </div>
+            </div>
+
+            <!-- Error Response -->
+            <div class="api-endpoint">
+                <h3>Error Responses</h3>
+                <p>When an error occurs, the API returns an error response with the appropriate status code:</p>
+
+                <div class="code-label">400 Bad Request:</div>
+                <div class="response-example">
+{
+  "success": false,
+  "message": "Validation failed",
+  "errors": [
+    "First name is required",
+    "Valid email is required"
+  ]
+}
+                </div>
+
+                <div class="code-label">404 Not Found:</div>
+                <div class="response-example">
+{
+  "success": false,
+  "message": "Staff member not found"
+}
+                </div>
+
+                <div class="code-label">500 Internal Server Error:</div>
+                <div class="response-example">
+{
+  "success": false,
+  "message": "Internal server error"
+}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
